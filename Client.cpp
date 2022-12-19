@@ -3,6 +3,7 @@
 #include<string.h>
 #include<arpa/inet.h>
 #include<iostream>
+#include<stdio.h>
 
 using namespace std;
 
@@ -33,8 +34,8 @@ int main()
     int number=0;
     while(1)
     {
-        char buff[1024];
-        sprintf(buff,"你好， hello world，%d...\n",number++);
+        char buff[1024]={0};
+        gets(buff);
         //发送数据
         send(fd,buff,strlen(buff)+1,0);
         //接收数据
@@ -42,7 +43,7 @@ int main()
         int len=recv(fd,buff,sizeof(buff),0);
         if(len>0)
         {
-            cout<<"server say: "<<buff;
+            cout<<"server say: "<<buff<<endl;
         }
         else if(len==0)
         {
